@@ -30,11 +30,20 @@ namespace EchoServer
 
             using (StreamWriter sw = new StreamWriter(ns))
             {
-                String inline = sr.ReadLine();
-                Console.WriteLine("Server modtaget: " + inline);
-                sw.WriteLine(inline);
-                sw.Flush();
-            }                            
+                DoClient(sr, sw);
+            }
+        }
+
+        private static void DoClient(StreamReader sr, StreamWriter sw)
+        {
+            String inline = sr.ReadLine();
+
+            int countWords = inline.Split(' ').Length;
+
+            Console.WriteLine("Server modtaget: " + inline + " fra Client." + countWords + " ord sendt fra server til Client");
+
+            sw.WriteLine(inline);
+            sw.Flush();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace EchoClient
                 sw.Flush();
 
                 String incomingStr = sr.ReadLine();
-                Console.WriteLine("Ekko modtaget: " + incomingStr);
+                Console.WriteLine("Ekko modtaget fra Server: " + incomingStr);
             }
         }
     }
