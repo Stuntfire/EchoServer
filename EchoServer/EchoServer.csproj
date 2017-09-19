@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EchoClient\EchoClient.csproj">
+      <Project>{ED04CF01-F0F4-4EBF-93C9-D4BB3A0EE1AC}</Project>
+      <Name>EchoClient</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

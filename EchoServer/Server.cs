@@ -18,32 +18,33 @@ namespace EchoServer
 
         public void Start()
         {
-            TcpListener server = new TcpListener(IPAddress.Loopback, 7);
+            TcpListener server = new TcpListener(IPAddress.Loopback, 7); //modtager alt info på port 7.
 
             server.Start();
 
-            using (TcpClient client = server.AcceptTcpClient())
+            using (TcpClient client = server.AcceptTcpClient()) //Venter på klienter...
 
+            DoClient(client);
+        }
+
+        private static void DoClient(TcpClient client)
+        {
             using (NetworkStream ns = client.GetStream())
 
             using (StreamReader sr = new StreamReader(ns))
 
             using (StreamWriter sw = new StreamWriter(ns))
             {
-                DoClient(sr, sw);
+                String inline = sr.ReadLine();  //Læser den nuværende streng af bogstaver og returnerer data som en string
+
+                int countWords = inline.Split(' ').Length;
+
+                Console.WriteLine("Server modtaget: " + inline + " fra Client. " + countWords + " ord sendt fra server til Client");
+
+                sw.WriteLine(inline);
+                sw.Flush(); //Clears the buffer
             }
-        }
-
-        private static void DoClient(StreamReader sr, StreamWriter sw)
-        {
-            String inline = sr.ReadLine();
-
-            int countWords = inline.Split(' ').Length;
-
-            Console.WriteLine("Server modtaget: " + inline + " fra Client." + countWords + " ord sendt fra server til Client");
-
-            sw.WriteLine(inline);
-            sw.Flush();
+            
         }
     }
 }

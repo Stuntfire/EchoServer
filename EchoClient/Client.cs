@@ -14,7 +14,7 @@ namespace EchoClient
         {
             String SendStr = "Peter";
 
-            using (TcpClient client = new TcpClient("localhost", 7))
+            using (TcpClient client = new TcpClient("localhost", 7)) // Port 7 er standard port til Echo-server.
             using (NetworkStream ns = client.GetStream())
             using (StreamReader sr = new StreamReader(ns))
             using (StreamWriter sw = new StreamWriter(ns))
